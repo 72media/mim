@@ -175,12 +175,10 @@
     interactive: false
   });
 
-  // 🌟 เมื่อเปิดเรดาร์ -> ซูมออกให้เห็นเรดาร์เต็มพื้นที่
   radarOverlay.on('add', function() {
     map.fitBounds(radarBounds);
   });
 
-  // 🌟 เมื่อปิดเรดาร์ -> ซูมกลับมาที่กรอบขอบเขตตำบลโค้งไผ่เสมอ
   radarOverlay.on('remove', function() {
     map.fitBounds(boundaryLayer.getBounds(), { padding: [20, 20] });
   });
@@ -215,7 +213,8 @@
     "เรดาร์ดอยมูเซอ (ตาก)": radarOverlay 
   };
 
-  L.control.layers(baseLayers, overlays, { position: 'topright', collapsed: false }).addTo(map);
+  // ⭐ เปลี่ยน collapsed: true เพื่อให้เมนูย่อเป็นไอคอนเล็กๆ และกดเปิด/ปิดได้
+  L.control.layers(baseLayers, overlays, { position: 'topright', collapsed: true }).addTo(map);
   
   L.control.scale({ imperial: false }).addTo(map);
 </script>
